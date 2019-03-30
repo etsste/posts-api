@@ -2,9 +2,9 @@ package com.doit.docker.web.rest;
 
 import com.doit.docker.domain.Post;
 import com.doit.docker.repository.PostRepository;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,9 +35,9 @@ public class PostResource {
     }
 
     @GetMapping("/posts")
-    public Page<Post> getAllPosts(Pageable pageable) {
+    public List<Post> getAllPosts(Pageable pageable) {
         log.info("getAllPosts");
-        return postRepository.findAll(pageable);
+        return postRepository.findAll(pageable).getContent();
     }
 
     @GetMapping("/posts/{id}")
